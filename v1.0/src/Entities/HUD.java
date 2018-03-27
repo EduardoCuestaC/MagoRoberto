@@ -27,6 +27,6 @@ public class HUD extends Entity {
 
     @Override
     public void render(Graphics g) {
-
+        System.out.println("p1: "+(float)(players.get(0).getResults()[0])+"p2: "+(float)(players.get(1).getResults()[0]));
     }
 }

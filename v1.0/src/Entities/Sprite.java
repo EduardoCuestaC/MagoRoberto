@@ -1,18 +1,19 @@
 package Entities;
 
+import Events.MouseSubject;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Sprite extends Entity{
     private BufferedImage image;
-
-    public Sprite(){
-        x = 100;
-        y = 100;
-    }
+    private boolean hidden = false;
 
     public void setImage(String imgName){
         image = ImageLoader.getInstance().getImage(imgName);
+        w = image.getWidth();
+        h = image.getHeight();
+        boundingBox = new Rectangle(x, y, w, h);
     }
 
     @Override
@@ -22,6 +23,15 @@ public class Sprite extends Entity{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image, x, y, null);
+        if(!hidden)
+            g.drawImage(image, x, y, null);
+    }
+
+    public void hide(){
+        hidden = true;
+    }
+
+    public void show(){
+        hidden = false;
     }
 }

@@ -1,18 +1,7 @@
 package States;
 
-import Game.GameContext;
-
-import java.util.Hashtable;
-
 public class StateFactory {
-    private GameContext context;
     private static StateFactory instance;
-    private Hashtable<String, GameState> options  = new Hashtable<>();
-
-    private StateFactory(){
-        options.put("running", new RunningState());
-        options.put("stopped", new StoppedState());
-    }
 
     public static StateFactory getInstance(){
         if(instance == null)
@@ -21,6 +10,14 @@ public class StateFactory {
     }
 
     public GameState createState(String type){
-        return options.getOrDefault(type, null);
+        switch(type){
+            case "setup":
+                return new SetupState();
+            case "running":
+                return new RunningState();
+            case "stopped":
+                return new StoppedState();
+        }
+        return null;
     }
 }

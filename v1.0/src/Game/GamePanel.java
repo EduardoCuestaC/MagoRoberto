@@ -6,6 +6,9 @@ This class maintains a constant frame rate on animation and uses threading and s
 
 
 
+import Events.KeySubject;
+import Events.MouseSubject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -15,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable{
     private boolean isRunning, isPaused, isGameOver;
     private int kFPS = 60;
     private long period = 1000/kFPS;
-    private int kPanelWidth = 500, kPanelHeight=500;
+    private int kPanelWidth = 1000, kPanelHeight=500;
     private Graphics ig;
     private Image bImage = null;
     private Thread animator;
@@ -133,7 +136,7 @@ public class GamePanel extends JPanel implements Runnable{
         setPreferredSize(new Dimension(kPanelWidth, kPanelHeight));
         setFocusable(true);
         requestFocus();
-        addKeyListener(EventDispatcher.getInstance());
-        addMouseListener(EventDispatcher.getInstance());
+        //keylis
+        addMouseListener(MouseSubject.getInstance());
     }
 }

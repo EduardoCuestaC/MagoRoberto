@@ -1,10 +1,25 @@
 package States;
 import java.awt.*;
 import Entities.*;
-import Game.GameManager;
+import Game.Manager;
 
 public class RunningState extends GameState {
-    private GameManager manager =  new GameManager();
+    private Manager manager = new Manager();
+    private Sprite sprite, sprite2;
+    private Card card;
+
+    public RunningState(){
+        /*
+        sprite = (Sprite) EntityFactory.getInstance().createEntity("sprite");
+        sprite.setImage("a");
+        sprite2 = (Sprite) EntityFactory.getInstance().createEntity("sprite");
+        sprite2.setImage("palomita");
+        card = (Card) EntityFactory.getInstance().createEntity("correctCard");
+        card.setFace(sprite);
+        card.setBack(sprite2);
+        card.setX(500);
+        card.setY(100);*/
+    }
 
     @Override
     public void resumeGame() {
@@ -23,6 +38,6 @@ public class RunningState extends GameState {
 
     @Override
     public void gameRender(Graphics g) {
-        g.setColor(Color.black);
+        manager.render(g);
     }
 }

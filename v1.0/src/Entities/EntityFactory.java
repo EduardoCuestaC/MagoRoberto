@@ -1,10 +1,7 @@
 package Entities;
 
-import java.util.HashMap;
-
 public class EntityFactory {
     private static EntityFactory instance;
-    private HashMap<String, Entity> options =  new HashMap<>();
 
     public static EntityFactory getInstance(){
         if(instance == null)
@@ -13,11 +10,15 @@ public class EntityFactory {
     }
 
     public Entity createEntity(String type){
-        return options.getOrDefault(type, null);
+        switch(type){
+            case "sprite":
+                return new Sprite();
+            case "card":
+                return new Card();
+            case "correctCard":
+                return new CorrectCard();
+        }
+        return null;
     }
 
-
-    private EntityFactory() {
-        options.put("square", new Sprite());
-    }
 }
