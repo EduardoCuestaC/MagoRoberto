@@ -5,7 +5,7 @@ import java.awt.*;
 public class SetupState extends GameState {
 
     @Override
-    public void resumeGame() {
+    public void changeToRunning() {
 
     }
 
@@ -15,8 +15,17 @@ public class SetupState extends GameState {
     }
 
     @Override
-    public void gameUpdate() {
+    public void changeToTurn1() {
+        context.setCurrent(context.getTurn1());
+    }
 
+    @Override
+    public void changeToTurn2() {
+    }
+
+    @Override
+    public void gameUpdate() {
+        changeToTurn1();
     }
 
     @Override

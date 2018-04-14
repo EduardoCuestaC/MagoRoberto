@@ -3,9 +3,13 @@ package Events;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class MouseSubject implements Subject, MouseListener{
-    private ArrayList<Observer> observers = new ArrayList<>();
+    private List<Observer> observers = new ArrayList<>();
+    private List<Observer> toAdd = new ArrayList<>();
     protected int[] state;
     private static MouseSubject instance;
 
@@ -21,12 +25,15 @@ public class MouseSubject implements Subject, MouseListener{
     }
 
     public void subscribe(Observer observer){
-        observers.add(observer);
+        toAdd.add(observer);
     }
 
     public void notifyObservers(){
+        observers.addAll(toAdd);
+        toAdd.clear();
         for(Observer observer : observers)
             observer.updateOnEvent(this);
+
     }
 
 

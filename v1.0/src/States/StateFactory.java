@@ -13,10 +13,12 @@ public class StateFactory {
         switch(type){
             case "setup":
                 return new SetupState();
-            case "running":
-                return new RunningState();
             case "stopped":
                 return new StoppedState();
+            case "turn1":
+                return new Turn1();
+            case "turn2":
+                return new Turn2();
         }
         return null;
     }

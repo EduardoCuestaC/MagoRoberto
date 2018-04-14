@@ -7,12 +7,22 @@ import java.awt.*;
 public class StoppedState extends GameState {
 
     @Override
-    public void resumeGame() {
+    public void changeToRunning() {
 
     }
 
     @Override
     public void stopGame() {
+
+    }
+
+    @Override
+    public void changeToTurn1() {
+
+    }
+
+    @Override
+    public void changeToTurn2() {
 
     }
 

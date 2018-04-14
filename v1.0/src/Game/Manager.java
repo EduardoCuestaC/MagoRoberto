@@ -1,7 +1,9 @@
 package Game;
 
 import Entities.*;
-import Events.*;
+import Events.Observer;
+import Events.Subject;
+import States.Turn;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,33 +11,22 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Manager implements Observer {
-    private HUD hud = new HUD();
-    private Player player1, player2;
-    private Turn current, turn1, turn2;
-    private ArrayList<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c"));
+    private ArrayList<String> nameList;
     private Random random = new Random();
     private Card[] cards = new Card[3];
-    private int lastStartTime = 0;
+    private int lastStartTime = 0, cc;
+    private Turn turn;
 
-    public Manager(){
-        player1 = new Player("Jugador 1");
-        turn1 = new Turn(player1);
-        player2 = new Player("Jugador 2");
-        turn2 = new Turn(player2);
-        hud.addPlayer(player1);
-        hud.addPlayer(player2);
-        initializeTurn();
-    }
-
-    public void setCurrent(Turn turn) {
-        current = turn;
+    public Manager(Turn turn){
+        nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e"));
+        this.turn = turn;
     }
 
     public void initializeTurn(){
         lastStartTime = (int) (System.nanoTime()/1000000L);
         shuffle();
         Sprite sprite, spriteBack;
-        int cc = random.nextInt(3);
+        cc = random.nextInt(3);
         for(int i = 0; i < 3; i++){
             sprite = (Sprite) EntityFactory.getInstance().createEntity("sprite");
             spriteBack = (Sprite) EntityFactory.getInstance().createEntity("sprite");
@@ -45,7 +36,7 @@ public class Manager implements Observer {
                 spriteBack.setImage("palomita");
                 cards[i].setFace(sprite);
                 cards[i].setBack(spriteBack);
-                ((CorrectCard) cards[i]).subscribe(this);
+                ((CorrectCard) cards[i]).subscribe(turn);
             }else {
                 cards[i] = (Card) EntityFactory.getInstance().createEntity("card");
                 spriteBack.setImage("equis");
@@ -76,17 +67,15 @@ public class Manager implements Observer {
         for(Card card : cards){
             card.render(g);
         }
-        hud.render(g);
+    }
+
+    public void listenTo(GameContext context){
+        context.subscribe(this);
     }
 
     @Override
     public void updateOnEvent(Subject subject) {
-        if(subject instanceof CorrectCard){
-            if(current == turn1)
-                setCurrent(turn2);
-            else
-                setCurrent(turn1);
-            current.getPlayer().addResult((double) (lastStartTime/1000));
-        }
+        if(((GameContext) subject).getCurrent() instanceof Turn)
+            initializeTurn();
     }
 }
