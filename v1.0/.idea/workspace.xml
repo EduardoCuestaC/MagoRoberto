@@ -12,14 +12,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="69" column="31" lean-forward="true" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
+            <state relative-caret-position="117">
+              <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetupState.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/States/SetupState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,7 +118,6 @@
         <option value="$PROJECT_DIR$/src/States/GameState.java" />
         <option value="$PROJECT_DIR$/src/States/RunningState.java" />
         <option value="$PROJECT_DIR$/src/States/StateFactory.java" />
-        <option value="$PROJECT_DIR$/src/States/SetupState.java" />
         <option value="$PROJECT_DIR$/src/Game/Player.java" />
         <option value="$PROJECT_DIR$/src/Game/GameContext.java" />
         <option value="$PROJECT_DIR$/src/Events/MouseSubject.java" />
@@ -120,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/Entities/CorrectCard.java" />
         <option value="$PROJECT_DIR$/src/Entities/HUD.java" />
         <option value="$PROJECT_DIR$/src/Game/Manager.java" />
+        <option value="$PROJECT_DIR$/src/States/SetupState.java" />
       </list>
     </option>
   </component>
@@ -368,12 +378,12 @@
       <workItem from="1523384237933" duration="7225000" />
       <workItem from="1523630493827" duration="1847000" />
       <workItem from="1523723858733" duration="11245000" />
-      <workItem from="1523807125908" duration="17452000" />
+      <workItem from="1523807125908" duration="17903000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103885000" />
+    <option name="totallyTimeSpent" value="104336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -525,14 +535,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Game/Turn.java" />
     <entry file="file://$PROJECT_DIR$/src/States/RunningState.java" />
-    <entry file="file://$PROJECT_DIR$/src/States/SetupState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/States/StateFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -681,11 +683,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Game/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="69" column="31" lean-forward="true" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
+        <state relative-caret-position="117">
+          <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/States/SetupState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
