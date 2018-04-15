@@ -69,8 +69,8 @@ public class Manager implements Observer {
         }
     }
 
-    public void listenTo(GameContext context){
-        context.subscribe(this);
+    public void listenTo(Subject subject){
+        subject.subscribe(this);
     }
 
     @Override
