@@ -1,5 +1,6 @@
 package States;
 
+import Entities.HUD;
 import Game.GameContext;
 
 import java.awt.*;
@@ -34,6 +35,7 @@ public class StoppedState extends GameState {
     @Override
     public void gameRender(Graphics g) {
         g.setColor(Color.black);
-        g.drawString("stopped", 100, 100);
+        g.drawString("¡Ha ganado "+HUD.getInstance().getWinner().getName()+"!", 100, 100);
+        HUD.getInstance().render(g);
     }
 }

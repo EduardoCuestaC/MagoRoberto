@@ -3,8 +3,11 @@ package Entities;
 import Events.Observer;
 import Events.Subject;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CorrectCard extends Card implements Subject{
+    private Timer timer = new Timer();
     private int[] state;
     private ArrayList<Observer> observers = new ArrayList<>();
 
@@ -27,6 +30,11 @@ public class CorrectCard extends Card implements Subject{
 
     @Override
     public void onFlip(){
-        notifyObservers();
+        timer.schedule(new TimerTask(){
+            @Override
+            public void run() {
+                notifyObservers();
+            }
+        }, 1000);
     }
 }

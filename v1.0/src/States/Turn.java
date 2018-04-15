@@ -15,8 +15,5 @@ import java.util.Random;
 public abstract class Turn extends GameState implements Observer{
     protected Manager manager;
     protected Player player;
-    protected static ArrayList<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h"));
-    public void createPlayer(String name){
-        player = new Player(name);
-    }
+    protected static ArrayList<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "j", "e", "t", "g", "h", "s"));
 }

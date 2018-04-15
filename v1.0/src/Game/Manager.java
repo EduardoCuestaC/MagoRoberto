@@ -14,7 +14,8 @@ public class Manager implements Observer {
     private ArrayList<String> nameList;
     private Random random = new Random();
     private Card[] cards = new Card[3];
-    private int lastStartTime = 0, cc;
+    private long lastStartTime;
+    private int cc;
     private Turn turn;
     private String letter = "";
 
@@ -23,8 +24,8 @@ public class Manager implements Observer {
         this.turn = turn;
     }
 
-    public void initializeTurn(){
-        lastStartTime = (int) (System.nanoTime()/1000000L);
+    private void initializeTurn(){
+        lastStartTime = System.nanoTime();
         shuffle();
         Sprite sprite, spriteBack;
         cc = random.nextInt(3);
@@ -67,10 +68,11 @@ public class Manager implements Observer {
 
     public void render(Graphics g){
         for(Card card : cards){
-            card.render(g);
+            if(card != null)
+                card.render(g);
         }
         g.setColor(Color.black);
-        g.drawString("--"+letter+"--", 30, 30);
+        g.drawString("Elige al animal cuyo nombre empieza con la letra "+letter, 30, 40);
     }
 
     public void listenTo(Subject subject){
@@ -79,7 +81,11 @@ public class Manager implements Observer {
 
     @Override
     public void updateOnEvent(Subject subject) {
-        if(((GameContext) subject).getCurrent() == turn)
+        if(((GameContext) subject).getCurrent() == turn)// && HUD.getInstance().getWinner() != null)
             initializeTurn();
+    }
+
+    public double getTurnTime(){
+        return (double)(System.nanoTime() - lastStartTime)/1000000000 - 1;
     }
 }

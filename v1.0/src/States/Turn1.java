@@ -1,5 +1,6 @@
 package States;
 
+import Entities.HUD;
 import Events.Subject;
 import Game.GameContext;
 import Game.Manager;
@@ -10,7 +11,9 @@ import java.awt.*;
 public class Turn1 extends Turn {
 
     public Turn1(){
+        player = new Player("Jugador 1");
         manager = new Manager(this, nameList);
+        HUD.getInstance().setPlayer1(player);
     }
 
     @Override
@@ -20,7 +23,7 @@ public class Turn1 extends Turn {
 
     @Override
     public void stopGame() {
-        context.setCurrent(context.getStopped());
+
     }
 
     @Override
@@ -41,12 +44,15 @@ public class Turn1 extends Turn {
     @Override
     public void gameRender(Graphics g) {
         g.setColor(Color.black);
+        g.drawString("Es turno de "+player.getName(), 30, 20);
+        g.setColor(Color.black);
         manager.render(g);
-        g.drawString("hola", 100, 100);
+        HUD.getInstance().render(g);
     }
 
     @Override
     public void updateOnEvent(Subject subject) {
+        HUD.getInstance().addResultToPlayer1(manager.getTurnTime());
         changeToTurn2();
     }
 
