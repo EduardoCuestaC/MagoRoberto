@@ -10,7 +10,7 @@ import java.awt.*;
 public class Turn1 extends Turn {
 
     public Turn1(){
-        manager = new Manager(this);
+        manager = new Manager(this, nameList);
     }
 
     @Override

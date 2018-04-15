@@ -16,9 +16,10 @@ public class Manager implements Observer {
     private Card[] cards = new Card[3];
     private int lastStartTime = 0, cc;
     private Turn turn;
+    private String letter = "";
 
-    public Manager(Turn turn){
-        nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e"));
+    public Manager(Turn turn, ArrayList<String> list){
+        nameList = list;
         this.turn = turn;
     }
 
@@ -37,6 +38,7 @@ public class Manager implements Observer {
                 cards[i].setFace(sprite);
                 cards[i].setBack(spriteBack);
                 ((CorrectCard) cards[i]).subscribe(turn);
+                letter = nameList.get(i);
             }else {
                 cards[i] = (Card) EntityFactory.getInstance().createEntity("card");
                 spriteBack.setImage("equis");
@@ -67,6 +69,8 @@ public class Manager implements Observer {
         for(Card card : cards){
             card.render(g);
         }
+        g.setColor(Color.black);
+        g.drawString("--"+letter+"--", 30, 30);
     }
 
     public void listenTo(Subject subject){
@@ -75,7 +79,7 @@ public class Manager implements Observer {
 
     @Override
     public void updateOnEvent(Subject subject) {
-        if(((GameContext) subject).getCurrent() instanceof Turn)
+        if(((GameContext) subject).getCurrent() == turn)
             initializeTurn();
     }
 }
