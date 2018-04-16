@@ -18,9 +18,9 @@ public class ImageLoader {
     private ImageLoader(){
         GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
         configuration = environment.getDefaultScreenDevice().getDefaultConfiguration();
-        String[] list = {"a", "b", "c", "j", "e", "t", "g", "h", "s", "equis", "palomita"};
+        String[] list = {"a", "b", "c", "j", "e", "t", "g", "h", "s", "magoRoberto", "equis", "palomita"};
         for(String name : list){
-            images.put(name, load("src\\Images\\"+name.toLowerCase()+".jpg"));
+            images.put(name, load("src\\Images\\"+name.toLowerCase()+".png"));
         }
     }
 

@@ -44,10 +44,9 @@ public class Turn1 extends Turn {
     @Override
     public void gameRender(Graphics g) {
         g.setColor(Color.black);
-        g.drawString("Es turno de "+player.getName(), 30, 20);
-        g.setColor(Color.black);
         manager.render(g);
         HUD.getInstance().render(g);
+        g.drawString("Es turno de "+player.getName(),180, 40);
     }
 
     @Override

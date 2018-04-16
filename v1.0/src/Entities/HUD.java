@@ -50,8 +50,8 @@ public class HUD extends Entity implements Subject {
     }
 
     private HUD(){
-        x = 300;
-        y = 400;
+        x = 220;
+        y = 350;
     }
 
     @Override

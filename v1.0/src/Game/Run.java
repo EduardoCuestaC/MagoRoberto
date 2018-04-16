@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Run {
     public static void main(String[] args){
-        JFrame window = new JFrame("Engine");
+        JFrame window = new JFrame("Mago Roberto");
         GamePanel panel = new GamePanel();
         window.getContentPane().add(panel);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

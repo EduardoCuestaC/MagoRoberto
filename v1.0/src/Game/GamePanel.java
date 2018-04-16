@@ -6,7 +6,6 @@ This class maintains a constant frame rate on animation and uses threading and s
 
 
 
-import Events.KeySubject;
 import Events.MouseSubject;
 
 import javax.swing.*;
@@ -15,10 +14,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel implements Runnable{
-    private boolean isRunning, isPaused, isGameOver;
+    private boolean isRunning;
     private int kFPS = 60;
     private long period = 1000/kFPS;
-    private int kPanelWidth = 1000, kPanelHeight=500;
+    private int kPanelWidth = 750, kPanelHeight=500;
     private Graphics ig;
     private Image bImage = null;
     private Thread animator;
@@ -32,9 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void gameUpdate(){
-        if(!isPaused && !isGameOver){
-            context.gameUpdate();
-        }
+        context.gameUpdate();
     }
 
     public void gameRender(){
@@ -46,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
                 ig = bImage.getGraphics();
             }
         }
-        ig.setColor(Color.white);
+        ig.setColor(Color.yellow);
         ig.fillRect(0, 0, kPanelWidth, kPanelHeight);
         context.gameRender(ig);
     }
@@ -73,14 +70,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void stopGame(){
         isRunning = false;
-    }
-
-    public void pauseGame(){
-        isPaused=true;
-    }
-
-    public void resumeGame(){
-        isPaused=false;
     }
 
     public void run(){
@@ -136,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable{
         setPreferredSize(new Dimension(kPanelWidth, kPanelHeight));
         setFocusable(true);
         requestFocus();
-        //keylis
+        //listeners
         addMouseListener(MouseSubject.getInstance());
     }
 }
