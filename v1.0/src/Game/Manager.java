@@ -11,23 +11,23 @@ import java.util.Arrays;
 import java.util.Random;
 import java.text.DecimalFormat;
 
-public class Manager implements Observer {
-    private ArrayList<String> nameList;
+public class Manager{
+    private ArrayList<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "j", "e", "t", "g", "h", "s"));;
     private Random random = new Random();
-    private Card[] cards = new Card[3];
     private long lastStartTime;
     private int cc;
-    private Turn turn;
     private String letter = "";
     private Sprite mr;
     private DecimalFormat df = new DecimalFormat(".#");
+    private Deck deck = new Deck();
+    private Observer subscriber;
 
-    public Manager(Turn turn, ArrayList<String> list){
-        nameList = list;
-        this.turn = turn;
+    public void setSubscriber(Observer observer){
+        subscriber = observer;
     }
 
-    private void initializeTurn(){
+    public Card[] initializeTurn(){
+        Card[] cards = new Card[3];
         mr = (Sprite) EntityFactory.getInstance().createEntity("sprite");
         mr.setImage("magoRoberto");
         mr.setX(10);
@@ -45,7 +45,7 @@ public class Manager implements Observer {
                 spriteBack.setImage("palomita");
                 cards[i].setFace(sprite);
                 cards[i].setBack(spriteBack);
-                ((CorrectCard) cards[i]).subscribe(turn);
+                ((CorrectCard) cards[i]).subscribe(subscriber);
                 letter = nameList.get(i);
             }else {
                 cards[i] = (Card) EntityFactory.getInstance().createEntity("card");
@@ -57,6 +57,7 @@ public class Manager implements Observer {
             cards[i].setY(100);
         }
         nameList.remove(cc);
+        return cards;
     }
 
     private void shuffle(){
@@ -75,23 +76,9 @@ public class Manager implements Observer {
 
     public void render(Graphics g){
         mr.render(g);
-        for(Card card : cards){
-            if(card != null)
-                card.render(g);
-        }
         g.setColor(Color.black);
         g.drawString("Elige al animal cuyo nombre empieza con la letra "+letter, 120, 60);
         g.drawString("Tiempo: "+String.valueOf(df.format(getTurnTime()+1)), 600, 60);
-    }
-
-    public void listenTo(Subject subject){
-        subject.subscribe(this);
-    }
-
-    @Override
-    public void updateOnEvent(Subject subject) {
-        if(((GameContext) subject).getCurrent() == turn)
-            initializeTurn();
     }
 
     public double getTurnTime(){

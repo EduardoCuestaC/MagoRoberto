@@ -10,8 +10,6 @@ import Events.MouseSubject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel implements Runnable{
     private boolean isRunning;
@@ -21,8 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
     private Graphics ig;
     private Image bImage = null;
     private Thread animator;
-    private GameContext context = new GameContext();
-
+    private GameContext context;
 
     public void addNotify(){
         //adds the JPanel to the JFrame
@@ -120,11 +117,11 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public GamePanel(){
-        //context = GameContext.getInstance();
+    public GamePanel(GameContext context){
         setPreferredSize(new Dimension(kPanelWidth, kPanelHeight));
         setFocusable(true);
         requestFocus();
+        this.context = context;
         //listeners
         addMouseListener(MouseSubject.getInstance());
     }

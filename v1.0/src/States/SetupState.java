@@ -28,7 +28,8 @@ public class SetupState extends GameState {
 
     @Override
     public void gameUpdate() {
-        if(waitTime - (System.nanoTime()-startTime)/1000000000L == 0)
+        ((Turn) context.getTurn1()).setCards(context.getManager().initializeTurn());
+        //if(waitTime - (System.nanoTime()-startTime)/1000000000L == 0)
             changeToTurn1();
     }
 

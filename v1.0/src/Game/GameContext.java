@@ -17,20 +17,9 @@ public class GameContext implements Subject{
 
     private GameState current;
 
+    private Manager manager;
+
     private ArrayList<Observer> observers = new ArrayList<>();
-
-
-    public void updateOnKeyEvent(int key, int type){
-        switch (key){
-            case 6:
-                break;
-            case 7:
-                stopGame();
-                break;
-            default:
-                break;
-        }
-    }
 
     public void stopGame(){
         current.stopGame();
@@ -70,6 +59,7 @@ public class GameContext implements Subject{
     }
 
     public GameContext(){
+        manager = new Manager();
         stopped = StateFactory.getInstance().createState("stopped");
         setup = StateFactory.getInstance().createState("setup");
         turn1 = StateFactory.getInstance().createState("turn1");
@@ -91,5 +81,13 @@ public class GameContext implements Subject{
     public void notifyObservers(){
         for(Observer observer : observers)
             observer.updateOnEvent(this);
+    }
+
+    public void setManager(Manager manager){
+        this.manager = manager;
+    }
+
+    public Manager getManager(){
+        return manager;
     }
 }

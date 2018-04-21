@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class StateFactory {
     private static StateFactory instance;
-    private HashMap<String, GameState> states = new HashMap<>();
 
     public static StateFactory getInstance(){
         if(instance == null)
@@ -13,14 +12,19 @@ public class StateFactory {
         return instance;
     }
 
-    private StateFactory(){
-        states.put("setup", new SetupState());
-        states.put("stopped", new StoppedState());
-        states.put("turn1", new Turn1());
-        states.put("turn2", new Turn2());
-    }
 
     public GameState createState(String type){
-       return states.getOrDefault(type, null);
+        switch(type){
+            case "setup":
+                return new SetupState();
+            case "turn1":
+                return new Turn1();
+            case "turn2":
+                return new Turn2();
+            case "stopped":
+                return new StoppedState();
+            default:
+                return null;
+        }
     }
 }

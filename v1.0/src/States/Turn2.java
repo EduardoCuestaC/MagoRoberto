@@ -1,5 +1,6 @@
 package States;
 
+import Entities.Card;
 import Entities.CorrectCard;
 import Entities.HUD;
 import Events.Subject;
@@ -13,7 +14,6 @@ public class Turn2 extends Turn {
 
     public Turn2(){
         player = new Player("Jugador 2");
-        manager = new Manager(this, nameList);
         HUD.getInstance().setPlayer2(player);
     }
 
@@ -45,7 +45,9 @@ public class Turn2 extends Turn {
     @Override
     public void gameRender(Graphics g) {
         g.setColor(Color.black);
-        manager.render(g);
+        for(Card card : cards){
+            card.render(g);
+        }
         HUD.getInstance().render(g);
         g.drawString("Es turno de "+player.getName(),180, 40);
     }
@@ -64,6 +66,5 @@ public class Turn2 extends Turn {
     @Override
     public void setGameContext(GameContext context){
         this.context = context;
-        manager.listenTo(this.context);
     }
 }

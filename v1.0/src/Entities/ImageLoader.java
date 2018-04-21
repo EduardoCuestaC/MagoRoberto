@@ -34,11 +34,14 @@ public class ImageLoader {
     private BufferedImage load(String path){
         try{
             BufferedImage image = ImageIO.read(new File(path));
+            /*
             BufferedImage frame = configuration.createCompatibleImage(image.getWidth(), image.getHeight(), image.getTransparency());
             Graphics2D g = frame.createGraphics();
             g.drawImage(image, 0, 0, null);
             g.dispose();
             return frame;
+            */
+            return image;
         }
         catch(IOException e){
             System.err.println(e.getMessage());
