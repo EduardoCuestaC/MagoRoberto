@@ -9,6 +9,7 @@ import States.Turn;
 public class ContextObserver implements Observer {
 
     private GameContext context;
+    private int transitions;
 
     public ContextObserver(GameContext context){
         this.context = context;
@@ -22,11 +23,15 @@ public class ContextObserver implements Observer {
             context.changeToTurn1();
         }
         if(subject instanceof CorrectCard){
-            System.out.println("eventevent");
-            if(context.getCurrent() == context.getTurn1())
+            System.out.println(transitions);
+            if(transitions == 5){
+                context.stopGame();
+            }else if(transitions % 2 == 0){
                 context.changeToTurn2();
-            else
+            }else{
                 context.changeToTurn1();
+            }
+            transitions++;
         }
     }
 }

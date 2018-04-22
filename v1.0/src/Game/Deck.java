@@ -46,7 +46,7 @@ public class Deck {
         card.setBack(back);
         card.setName(nameList.get(ignore));
         ignore++;
-        System.out.println("adios");
+        //System.out.println("adios");
         return card;
     }
 
@@ -60,7 +60,7 @@ public class Deck {
         card.setBack(back);
         card.setName(nameList.get(ignore));
         nameList.remove(ignore);
-        System.out.println("hola");
+        //System.out.println("hola");
         return card;
     }
 }

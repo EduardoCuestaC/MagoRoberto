@@ -31,7 +31,7 @@ public class Manager{
     }
 
     public ArrayList<Card> getTurnCards(){
-        System.out.println("gotturncards");
+        //System.out.println("gotturncards");
         deck.shuffle();
         Random random =  new Random();
         int cc = random.nextInt(3);
