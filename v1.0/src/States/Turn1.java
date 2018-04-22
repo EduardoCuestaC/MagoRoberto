@@ -33,6 +33,7 @@ public class Turn1 extends Turn {
 
     @Override
     public void changeToTurn2() {
+        ((Turn) context.getTurn2()).setCards(context.getManager().getTurnCards());
         context.setCurrent(context.getTurn2());
     }
 

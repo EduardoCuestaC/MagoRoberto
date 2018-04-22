@@ -31,20 +31,23 @@ public class Manager{
     }
 
     public ArrayList<Card> getTurnCards(){
+        System.out.println("gotturncards");
         deck.shuffle();
         Random random =  new Random();
         int cc = random.nextInt(3);
         ArrayList<Card> cards = new ArrayList<>();
         for(int i = 0; i<3; i++){
-            Card card =deck.draw();
+            Card card;
             if(i==cc){
-                Sprite sprite = (Sprite) EntityFactory.getInstance().createEntity("sprite");
-                sprite.setImage("palomita");
-                card.setBack(sprite);
+                card = deck.drawCorrect();
                 letter = card.getName().charAt(0)+"";
                 ((CorrectCard) card).subscribe(subscriber);
+            }else{
+                card =deck.draw();
             }
             cards.add(card);
+            cards.get(i).setX(220*i + 50);
+            cards.get(i).setY(100);
         }
         return cards;
     }

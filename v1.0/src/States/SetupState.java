@@ -1,6 +1,8 @@
 package States;
 
 import Events.Counter;
+import Game.GameContext;
+import Game.Manager;
 
 import java.awt.*;
 
@@ -25,6 +27,7 @@ public class SetupState extends GameState {
 
     @Override
     public void changeToTurn1() {
+        ((Turn) context.getTurn1()).setCards(context.getManager().getTurnCards());
         context.setCurrent(context.getTurn1());
     }
 
@@ -34,6 +37,12 @@ public class SetupState extends GameState {
 
     @Override
     public void gameUpdate() {
+    }
+
+    @Override
+    public void setGameContext(GameContext context){
+        this.context = context;
+        context.setManager(new Manager());
     }
 
     @Override

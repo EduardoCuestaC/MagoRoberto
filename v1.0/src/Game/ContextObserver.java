@@ -12,16 +12,17 @@ public class ContextObserver implements Observer {
 
     public ContextObserver(GameContext context){
         this.context = context;
-        this.context.getManager().setSubscriber(this);
         Counter.getInstance().subscribe(this);
     }
 
     @Override
     public void updateOnEvent(Subject subject) {
         if(subject == Counter.getInstance()){
+            context.getManager().setSubscriber(this);
             context.changeToTurn1();
         }
         if(subject instanceof CorrectCard){
+            System.out.println("eventevent");
             if(context.getCurrent() == context.getTurn1())
                 context.changeToTurn2();
             else

@@ -11,6 +11,13 @@ public class CorrectCard extends Card implements Subject{
     private int[] state;
     private ArrayList<Observer> observers = new ArrayList<>();
 
+    public void morphFromCard(Card card){
+        setName(card.getName());
+        setFace(card.getFace());
+        setX(card.getX());
+        setY(card.getY());
+    }
+
     public int[] getState() {
         return state;
     }

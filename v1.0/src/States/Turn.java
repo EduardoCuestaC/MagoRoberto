@@ -15,8 +15,9 @@ import java.util.Random;
 public abstract class Turn extends GameState{
     protected Manager manager;
     protected Player player;
-    protected Card[] cards;
-    public void setCards(Card[] cards){
-        this.cards = cards;
+    protected ArrayList<Card> cards =  new ArrayList<>();
+    public void setCards(ArrayList<Card> cards){
+        this.cards.clear();
+        this.cards.addAll(cards);
     }
 }

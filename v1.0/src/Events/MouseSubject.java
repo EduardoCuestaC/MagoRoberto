@@ -29,7 +29,7 @@ public class MouseSubject implements Subject, MouseListener{
     }
 
     public void notifyObservers(){
-        if(!toAdd.isEmpty())
+        if(toAdd.size()==3)
             observers.clear();
         observers.addAll(toAdd);
         toAdd.clear();

@@ -1,15 +1,13 @@
 package Game;
 
 import Entities.CorrectCard;
-import Events.Observer;
-import Events.Subject;
 import States.GameState;
 import States.StateFactory;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GameContext implements Subject{
+public class GameContext{
     private GameState stopped;
     private GameState setup;
     private GameState turn1;
@@ -18,8 +16,6 @@ public class GameContext implements Subject{
     private GameState current;
 
     private Manager manager;
-
-    private ArrayList<Observer> observers = new ArrayList<>();
 
     public void stopGame(){
         current.stopGame();
@@ -42,7 +38,6 @@ public class GameContext implements Subject{
 
     public void setCurrent(GameState state){
         current = state;
-        notifyObservers();
     }
     public GameState getCurrent(){
         return current;
@@ -59,7 +54,6 @@ public class GameContext implements Subject{
     }
 
     public GameContext(){
-        manager = new Manager();
         stopped = StateFactory.getInstance().createState("stopped");
         setup = StateFactory.getInstance().createState("setup");
         turn1 = StateFactory.getInstance().createState("turn1");
@@ -70,17 +64,6 @@ public class GameContext implements Subject{
         turn2.setGameContext(this);
 
         current = setup;
-    }
-
-    @Override
-    public void subscribe(Observer observer){
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifyObservers(){
-        for(Observer observer : observers)
-            observer.updateOnEvent(this);
     }
 
     public void setManager(Manager manager){

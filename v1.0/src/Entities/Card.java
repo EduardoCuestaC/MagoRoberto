@@ -7,8 +7,8 @@ import Events.Subject;
 import java.awt.*;
 
 public class Card extends Entity implements Observer {
-    private Sprite face;
-    private Sprite back;
+    protected Sprite face;
+    protected Sprite back;
     private boolean flipped = false;
     private String name;
 
@@ -22,6 +22,14 @@ public class Card extends Entity implements Observer {
 
     public String getName(){
         return name;
+    }
+
+    public Sprite getFace(){
+        return face;
+    }
+
+    public Sprite get(){
+        return face;
     }
 
     public void setX(int x){
