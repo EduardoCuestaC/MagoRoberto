@@ -53,17 +53,6 @@ public class Turn2 extends Turn {
     }
 
     @Override
-    public void updateOnEvent(Subject subject) {
-        HUD.getInstance().addResultToPlayer2(manager.getTurnTime());
-
-        if(HUD.getInstance().getWinner() == null)
-            changeToTurn1();
-        else
-            stopGame();
-
-    }
-
-    @Override
     public void setGameContext(GameContext context){
         this.context = context;
     }

@@ -6,6 +6,7 @@ import Events.Subject;
 import States.Turn;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -15,7 +16,6 @@ public class Manager{
     private ArrayList<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "j", "e", "t", "g", "h", "s"));;
     private Random random = new Random();
     private long lastStartTime;
-    private int cc;
     private String letter = "";
     private Sprite mr;
     private DecimalFormat df = new DecimalFormat(".#");
@@ -26,48 +26,27 @@ public class Manager{
         subscriber = observer;
     }
 
-    public Card[] initializeTurn(){
-        Card[] cards = new Card[3];
-        mr = (Sprite) EntityFactory.getInstance().createEntity("sprite");
-        mr.setImage("magoRoberto");
-        mr.setX(10);
-        mr.setY(10);
-        lastStartTime = System.nanoTime();
-        shuffle();
-        Sprite sprite, spriteBack;
-        cc = random.nextInt(3);
-        for(int i = 0; i < 3; i++){
-            sprite = (Sprite) EntityFactory.getInstance().createEntity("sprite");
-            spriteBack = (Sprite) EntityFactory.getInstance().createEntity("sprite");
-            sprite.setImage(nameList.get(i));
-            if(i == cc){
-                cards[i] = (Card) EntityFactory.getInstance().createEntity("correctCard");
-                spriteBack.setImage("palomita");
-                cards[i].setFace(sprite);
-                cards[i].setBack(spriteBack);
-                ((CorrectCard) cards[i]).subscribe(subscriber);
-                letter = nameList.get(i);
-            }else {
-                cards[i] = (Card) EntityFactory.getInstance().createEntity("card");
-                spriteBack.setImage("equis");
-                cards[i].setFace(sprite);
-                cards[i].setBack(spriteBack);
-            }
-            cards[i].setX(220*i + 50);
-            cards[i].setY(100);
-        }
-        nameList.remove(cc);
-        return cards;
+    public String getLetter(){
+        return letter;
     }
 
-    private void shuffle(){
-        String m;
-        for(int i=0; i<nameList.size()-1;i++){
-            int j = random.nextInt(nameList.size()-i);
-            m = nameList.get(j);
-            nameList.set(j, nameList.get(i));
-            nameList.set(i, m);
+    public ArrayList<Card> getTurnCards(){
+        deck.shuffle();
+        Random random =  new Random();
+        int cc = random.nextInt(3);
+        ArrayList<Card> cards = new ArrayList<>();
+        for(int i = 0; i<3; i++){
+            Card card =deck.draw();
+            if(i==cc){
+                Sprite sprite = (Sprite) EntityFactory.getInstance().createEntity("sprite");
+                sprite.setImage("palomita");
+                card.setBack(sprite);
+                letter = card.getName().charAt(0)+"";
+                ((CorrectCard) card).subscribe(subscriber);
+            }
+            cards.add(card);
         }
+        return cards;
     }
 
     public void update(){
@@ -75,13 +54,7 @@ public class Manager{
     }
 
     public void render(Graphics g){
-        mr.render(g);
-        g.setColor(Color.black);
-        g.drawString("Elige al animal cuyo nombre empieza con la letra "+letter, 120, 60);
-        g.drawString("Tiempo: "+String.valueOf(df.format(getTurnTime()+1)), 600, 60);
-    }
 
-    public double getTurnTime(){
-        return (double)(System.nanoTime() - lastStartTime)/1000000000 - 1;
     }
 }
+

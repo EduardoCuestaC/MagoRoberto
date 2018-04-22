@@ -52,12 +52,6 @@ public class Turn1 extends Turn {
     }
 
     @Override
-    public void updateOnEvent(Subject subject) {
-        HUD.getInstance().addResultToPlayer1(manager.getTurnTime());
-        changeToTurn2();
-    }
-
-    @Override
     public void setGameContext(GameContext context){
         this.context = context;
     }

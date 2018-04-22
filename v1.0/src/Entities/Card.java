@@ -10,9 +10,18 @@ public class Card extends Entity implements Observer {
     private Sprite face;
     private Sprite back;
     private boolean flipped = false;
+    private String name;
 
     public Card(){
         MouseSubject.getInstance().subscribe(this);
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void setX(int x){
