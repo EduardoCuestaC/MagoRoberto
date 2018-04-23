@@ -25,7 +25,6 @@ public class ContextObserver implements Observer {
             }
         }
         if(subject instanceof CorrectCard){
-            System.out.println(transitions);
             if(transitions == 5){
                 context.stopGame();
             }else if(transitions % 2 == 0){

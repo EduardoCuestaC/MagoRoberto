@@ -20,7 +20,7 @@ public class ImageLoader {
         configuration = environment.getDefaultScreenDevice().getDefaultConfiguration();
         String[] list = {"a", "b", "c", "j", "e", "t", "g", "h", "s", "magoRoberto", "equis", "palomita"};
         for(String name : list){
-            images.put(name, load("src\\Images\\"+name.toLowerCase()+".png"));
+            images.put(name, load("src/Images/"+name.toLowerCase()+".png"));
         }
     }
 
