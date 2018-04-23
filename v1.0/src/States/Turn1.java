@@ -2,6 +2,8 @@ package States;
 
 import Entities.Card;
 import Entities.HUD;
+import Entities.ImageLoader;
+import Events.Counter;
 import Events.Subject;
 import Game.GameContext;
 import Game.Manager;
@@ -12,6 +14,9 @@ import java.awt.*;
 public class Turn1 extends Turn {
 
     public Turn1(){
+        mr.setX(10);
+        mr.setY(10);
+        mr.setImage("magoRoberto");
         player = new Player("Jugador 1");
         HUD.getInstance().setPlayer1(player);
     }
@@ -33,6 +38,7 @@ public class Turn1 extends Turn {
 
     @Override
     public void changeToTurn2() {
+        Counter.getInstance().restart();
         ((Turn) context.getTurn2()).setCards(context.getManager().getTurnCards());
         context.setCurrent(context.getTurn2());
     }
@@ -48,8 +54,12 @@ public class Turn1 extends Turn {
         for(Card card : cards){
             card.render(g);
         }
+
         HUD.getInstance().render(g);
-        g.drawString("Es turno de "+player.getName(),180, 40);
+        mr.render(g);
+        g.drawString("Haz click sobre el animal que empieza con "+context.getManager().getLetter(), 130, 50);
+        g.drawString("Es turno de "+player.getName(),200, 30);
+        g.drawString(String.valueOf(df.format(Counter.getInstance().getElapsedTime())), 500, 50);
     }
 
     @Override

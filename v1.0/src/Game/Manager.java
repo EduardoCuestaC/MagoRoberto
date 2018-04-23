@@ -41,6 +41,7 @@ public class Manager{
             if(i==cc){
                 card = deck.drawCorrect();
                 letter = card.getName().charAt(0)+"";
+                ((CorrectCard) card).subscribe(HUD.getInstance());
                 ((CorrectCard) card).subscribe(subscriber);
             }else{
                 card =deck.draw();

@@ -16,6 +16,10 @@ public class Counter implements Subject{
         return instance;
     }
 
+    public void restart(){
+        startTime = System.nanoTime();
+    }
+
     public void startNew(int ms){
         startTime = System.nanoTime();
         timer.schedule(new TimerTask(){

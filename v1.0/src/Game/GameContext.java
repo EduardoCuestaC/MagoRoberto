@@ -43,6 +43,9 @@ public class GameContext{
         return current;
     }
 
+    public GameState getSetup(){
+        return setup;
+    }
     public GameState getStopped() {
         return stopped;
     }

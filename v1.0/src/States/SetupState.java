@@ -29,6 +29,7 @@ public class SetupState extends GameState {
     public void changeToTurn1() {
         ((Turn) context.getTurn1()).setCards(context.getManager().getTurnCards());
         context.setCurrent(context.getTurn1());
+        Counter.getInstance().restart();
     }
 
     @Override
@@ -49,6 +50,6 @@ public class SetupState extends GameState {
     public void gameRender(Graphics g) {
         g.setColor(Color.black);
         g.drawString("¡Prepárense! El turno del jugador 1 empieza en...", 50, 100);
-        g.drawString(String.valueOf((int)Counter.getInstance().getElapsedTime()),350, 100);
-    }
+        g.drawString(String.valueOf(10-(int)Counter.getInstance().getElapsedTime()),350, 100);
+}
 }

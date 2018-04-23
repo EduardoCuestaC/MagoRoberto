@@ -19,8 +19,10 @@ public class ContextObserver implements Observer {
     @Override
     public void updateOnEvent(Subject subject) {
         if(subject == Counter.getInstance()){
-            context.getManager().setSubscriber(this);
-            context.changeToTurn1();
+            if(context.getCurrent() == context.getSetup()) {
+                context.getManager().setSubscriber(this);
+                context.changeToTurn1();
+            }
         }
         if(subject instanceof CorrectCard){
             System.out.println(transitions);
